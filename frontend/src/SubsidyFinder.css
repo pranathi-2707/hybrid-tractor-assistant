@@ -1,0 +1,214 @@
+
+.subsidy-finder {
+  padding: 75px 0;
+  border-top: 1px solid #e4e7dc;
+  color: #293c2e;
+}
+
+.subsidy-hero {
+  padding: clamp(24px, 5vw, 48px);
+  border-radius: 18px;
+  background: #edf1e4;
+}
+
+.subsidy-eyebrow {
+  margin: 0 0 12px;
+  color: #718c3c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.subsidy-hero h2 {
+  margin: 0 0 15px;
+  color: #293c2e;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.subsidy-hero > p:not(.subsidy-eyebrow) {
+  max-width: 650px;
+  color: #687663;
+  line-height: 1.8;
+}
+
+.subsidy-search-label {
+  display: block;
+  margin: 24px 0 8px;
+  color: #344a37;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.subsidy-search,
+.subsidy-select {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 620px;
+  padding: 14px 15px;
+  border: 1px solid #d9dfcf;
+  border-radius: 9px;
+  background: #fffefa;
+  color: #293c2e;
+  font: inherit;
+}
+
+.subsidy-search:focus,
+.subsidy-select:focus {
+  outline: 2px solid #81934f;
+  outline-offset: 2px;
+}
+
+.subsidy-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 45px 0 22px;
+}
+
+.subsidy-results-heading h3 {
+  margin: 0;
+  color: #293c2e;
+  font-size: 25px;
+}
+
+.subsidy-count {
+  color: #71805f;
+  font-size: 12px;
+}
+
+.subsidy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.subsidy-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 25px;
+  border: 1px solid #e2e6d8;
+  border-radius: 14px;
+  background: #fffefa;
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.subsidy-card:hover {
+  transform: translateY(-3px);
+  border-color: #a9bb88;
+}
+
+.subsidy-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.subsidy-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+  background: #edf1e4;
+  color: #536d34;
+  font-size: 22px;
+}
+
+.subsidy-category {
+  color: #718c3c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.subsidy-card h4 {
+  margin: 20px 0 10px;
+  color: #293c2e;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.subsidy-description {
+  color: #737d70;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.subsidy-source {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+
+.subsidy-source span {
+  color: #81897d;
+}
+
+.subsidy-source strong {
+  color: #344a37;
+  line-height: 1.6;
+}
+
+.subsidy-status {
+  margin-top: 18px;
+  color: #776a3c;
+  font-size: 12px;
+}
+
+.subsidy-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  color: #526d32;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.subsidy-link:hover {
+  text-decoration: underline;
+}
+
+.subsidy-empty {
+  padding: 25px;
+  border-radius: 10px;
+  background: #f0f1e9;
+  color: #687663;
+}
+
+.subsidy-notice {
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid #e6e3d1;
+  border-radius: 12px;
+  background: #faf8ee;
+}
+
+.subsidy-notice strong {
+  color: #645a32;
+  font-size: 13px;
+}
+
+.subsidy-notice p {
+  margin-bottom: 0;
+  color: #73786b;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+@media (max-width: 650px) {
+  .subsidy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subsidy-results-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

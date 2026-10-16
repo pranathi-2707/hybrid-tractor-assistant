@@ -1,0 +1,269 @@
+
+.farmer-dashboard {
+  width: 100%;
+  padding: 76px 0;
+  color: #26372c;
+  border-top: 1px solid #e4e7dc;
+}
+
+.dashboard-heading {
+  max-width: 680px;
+  margin-bottom: 34px;
+}
+
+.dashboard-eyebrow {
+  margin: 0 0 12px;
+  color: #718c3c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.dashboard-heading h2 {
+  margin: 0 0 14px;
+  color: #293c2e;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+}
+
+.dashboard-heading > p:last-child {
+  color: #788176;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 55px;
+}
+
+.dashboard-stat {
+  min-width: 0;
+  padding: 25px;
+  border: 1px solid #e2e6d8;
+  border-radius: 14px;
+  background: #edf1e4;
+}
+
+.dashboard-stat span,
+.dashboard-stat strong,
+.dashboard-stat small {
+  display: block;
+}
+
+.dashboard-stat span {
+  color: #687663;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dashboard-stat strong {
+  margin: 15px 0 9px;
+  color: #2e4632;
+  font-size: clamp(22px, 3vw, 31px);
+  overflow-wrap: anywhere;
+}
+
+.dashboard-stat small {
+  color: #7b8575;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.dashboard-history-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.dashboard-history-heading h3 {
+  margin: 0;
+  color: #293c2e;
+  font-size: 25px;
+}
+
+.dashboard-refresh {
+  padding: 12px 20px;
+  border: 1px solid #d9dfcf;
+  border-radius: 8px;
+  background: #fffefa;
+  color: #304735;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.dashboard-refresh:hover {
+  background: #304735;
+  color: #fffefa;
+}
+
+.dashboard-refresh:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.dashboard-message,
+.dashboard-empty,
+.dashboard-error {
+  padding: 28px;
+  border-radius: 12px;
+  background: #f0f1e9;
+  color: #657263;
+  line-height: 1.7;
+}
+
+.dashboard-empty h3 {
+  margin-top: 0;
+  color: #2d4232;
+}
+
+.dashboard-empty a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #526d32;
+  font-weight: 700;
+}
+
+.dashboard-error {
+  background: #fff0ed;
+  color: #a7352a;
+}
+
+.dashboard-error button {
+  padding: 10px 14px;
+  border: 1px solid #e9b7af;
+  border-radius: 7px;
+  background: white;
+  color: #a7352a;
+  cursor: pointer;
+}
+
+.dashboard-records {
+  display: grid;
+  gap: 16px;
+}
+
+.dashboard-record {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.1fr;
+  align-items: center;
+  gap: 25px;
+  padding: 26px;
+  border: 1px solid #e4e7dc;
+  border-radius: 13px;
+  background: #fffefa;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.dashboard-record:hover {
+  border-color: #a9bb88;
+  transform: translateY(-2px);
+}
+
+.dashboard-record-id,
+.dashboard-result-label {
+  color: #81934f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.dashboard-record-main h4 {
+  margin: 12px 0 7px;
+  color: #293c2e;
+  font-size: 19px;
+}
+
+.dashboard-record-main p {
+  margin: 0;
+  color: #81877b;
+  font-size: 13px;
+}
+
+.dashboard-record-details,
+.dashboard-record-result {
+  display: grid;
+  gap: 8px;
+}
+
+.dashboard-record-details span,
+.dashboard-record-result > span:not(.dashboard-result-label) {
+  color: #7a8375;
+  font-size: 12px;
+}
+
+.dashboard-record-details strong {
+  margin-bottom: 8px;
+  color: #304735;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-record-result > strong {
+  margin-bottom: 8px;
+  color: #536d34;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dashboard-disclaimer {
+  margin-top: 28px;
+  color: #7d8579;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media (max-width: 850px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-record {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-record-result {
+    grid-column: 1 / -1;
+    padding-top: 18px;
+    border-top: 1px solid #e9ebdf;
+  }
+}
+
+@media (max-width: 550px) {
+  .farmer-dashboard {
+    padding: 48px 0;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dashboard-stat {
+    padding: 20px;
+  }
+
+  .dashboard-history-heading {
+    align-items: flex-start;
+  }
+
+  .dashboard-history-heading h3 {
+    font-size: 21px;
+  }
+
+  .dashboard-record {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .dashboard-record-result {
+    grid-column: auto;
+  }
+}
