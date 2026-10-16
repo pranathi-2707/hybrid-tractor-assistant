@@ -29,9 +29,7 @@ export default function Dashboard() {
       const response = await fetch(API_URL);
 
       if (!response.ok) {
-        throw new Error(
-          `Request failed (${response.status}). Please try again.`
-        );
+        throw new Error(`Request failed: ${response.status}`);
       }
 
       const data = await response.json();
@@ -45,8 +43,7 @@ export default function Dashboard() {
       setError(
         err instanceof TypeError
           ? "Could not connect to the live backend. Check your connection or try again shortly."
-          : err.message ||
-              "Could not load assessment history."
+          : err.message || "Could not load assessment history."
       );
     } finally {
       setLoading(false);
@@ -58,25 +55,19 @@ export default function Dashboard() {
   }, [loadAssessments]);
 
   const suitableCount = assessments.filter(
-    (item) =>
-      item.recommendation === "PRELIMINARILY_SUITABLE"
+    (item) => item.recommendation === "PRELIMINARILY_SUITABLE"
   ).length;
 
   const totalFuelCost = assessments.reduce(
-    (total, item) =>
-      total + (Number(item.annualFuelCost) || 0),
+    (total, item) => total + (Number(item.annualFuelCost) || 0),
     0
   );
 
   return (
     <section className="farmer-dashboard" id="dashboard">
       <div className="dashboard-heading">
-        <p className="dashboard-eyebrow">
-          FARMER ASSISTANCE PLATFORM
-        </p>
-
+        <p className="dashboard-eyebrow">FARMER ASSISTANCE PLATFORM</p>
         <h2>Your farmer dashboard.</h2>
-
         <p>
           Review your saved tractor assessments and preliminary
           hybrid-conversion estimates.
@@ -130,96 +121,75 @@ export default function Dashboard() {
       {!loading && error && (
         <div className="dashboard-error" role="alert">
           <p>{error}</p>
-
-          <button
-            type="button"
-            onClick={loadAssessments}
-          >
+          <button type="button" onClick={loadAssessments}>
             Try again
           </button>
         </div>
       )}
 
-      {!loading &&
-        !error &&
-        assessments.length === 0 && (
-          <div className="dashboard-empty">
-            <h3>No assessments yet</h3>
+      {!loading && !error && assessments.length === 0 && (
+        <div className="dashboard-empty">
+          <h3>No assessments yet</h3>
+          <p>
+            Complete the tractor assessment form to see your first
+            saved record here.
+          </p>
+          <a href="#assessment">Start an assessment</a>
+        </div>
+      )}
 
-            <p>
-              Complete the tractor assessment form to see your
-              first saved record here.
-            </p>
+      {!loading && !error && assessments.length > 0 && (
+        <div className="dashboard-records">
+          {assessments.map((item) => (
+            <article className="dashboard-record" key={item.id}>
+              <div className="dashboard-record-main">
+                <span className="dashboard-record-id">
+                  ASSESSMENT #{item.id}
+                </span>
 
-            <a href="#assessment">
-              Start an assessment
-            </a>
-          </div>
-        )}
+                <h4>
+                  {item.make} {item.model}
+                </h4>
 
-      {!loading &&
-        !error &&
-        assessments.length > 0 && (
-          <div className="dashboard-records">
-            {assessments.map((item) => (
-              <article
-                className="dashboard-record"
-                key={item.id}
-              >
-                <div className="dashboard-record-main">
-                  <span className="dashboard-record-id">
-                    ASSESSMENT #{item.id}
-                  </span>
+                <p>Tractor age: {item.ageYears} years</p>
+              </div>
 
-                  <h4>
-                    {item.make} {item.model}
-                  </h4>
+              <div className="dashboard-record-details">
+                <span>Annual fuel cost</span>
+                <strong>{formatCurrency(item.annualFuelCost)}</strong>
 
-                  <p>
-                    Tractor age: {item.ageYears} years
-                  </p>
-                </div>
+                <span>Conversion cost estimate</span>
+                <strong>
+                  {formatCurrency(item.estimatedConversionCost)}
+                </strong>
+              </div>
 
-                <div className="dashboard-record-details">
-                  <span>Annual fuel cost</span>
+              <div className="dashboard-record-result">
+                <span className="dashboard-result-label">
+                  Preliminary result
+                </span>
 
-                  <strong>
-                    {formatCurrency(item.annualFuelCost)}
-                  </strong>
+                <strong>
+                  {formatRecommendation(item.recommendation)}
+                </strong>
 
-                  <span>Conversion cost estimate</span>
-
-                  <strong>
-                    {formatCurrency(
-                      item.estimatedConversionCost
-                    )}
-                  </strong>
-                </div>
-
-                <div className="dashboard-record-result">
-                  <span className="dashboard-result-label">
-                    Preliminary result
-                  </span>
-
-                  <strong>
-                    {formatRecommendation(
-                      item.recommendation
-                    )}
-                  </strong>
-
-                  <span>Estimated payback</span>
-
-                  <strong>
-                    {item.estimatedPaybackYears == null
-                      ? "Not available"
-                      : `${item.estimatedPaybackYears} years`}
-                  </strong>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
+                <span>Estimated payback</span>
+                <strong>
+                  {item.estimatedPaybackYears == null
+                    ? "Not available"
+                    : `${item.estimatedPaybackYears} years`}
+                </strong>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
 
       <p className="dashboard-disclaimer">
         These results are preliminary estimates, not engineering
-        approval
+        approval or guaranteed savings. A qualified professional
+        must inspect the tractor before any conversion decision.
+      </p>
+    </section>
+  );
+}
